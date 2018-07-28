@@ -32,7 +32,7 @@ That is exactly how the insertion procedure works. We ensured that both size and
 
 A code is worth a thousand words, here is the code of the 2-heaps solution. As you can see, it’s much less complicated than it’s described. We can use the heapq module in python, which provides an implementation of min-heap only. But we need a max-heap as well, so we can make a min-heap behave like a max-heap by multiplying the number to be inserted by -1 and then inserting. So, every time we insert or access an element from the max-heap, we multiply the value by -1 to get the original number:
 
-```
+```python
 class streamMedian:
     def __init__(self):
         self.minHeap, self.maxHeap = [], []

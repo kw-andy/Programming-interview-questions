@@ -6,7 +6,7 @@ Given an integer array, one element occurs even number of times and all others h
 
 We can use a hashtable as we always do with problems that involve counting. Scan the array and count the occurrences of each number. Then perform a second pass from the hashtable and return the element with even count. Here’s the code:
 
-```
+```python
 def getEven1(arr):
     counts=collections.defaultdict(int)
     for num in arr:
@@ -20,7 +20,7 @@ Time and space complexity of this approach is O(N), which is optimal. There’s 
 
 For example, let’s say we’re given the following array: [2, 1, 3, 1]. First we get all the unique elements [1, 2, 3]. Then we construct a new array from the original array and the unique elements by appending them together [2, 1, 3, 1, 1, 2, 3]. We XOR all the elements in this new array. The result is 2^1^3^1^1^2^3 = 1. Because the numbers 2 and 3 occur in the new array even number of times (2 times), so they’ll be XORed with themselves odd times (1 time), which results in 0. The number 1 occurs odd number of times (3 times), so it’ll be XORed with itself even times (2 times), and the result is the number 1 itself. Which is the even occurring element in the original array. Here’s the code of this approach:
 
-```
+```python
 def getEven2(arr):
     return reduce(lambda x, y: x^y, arr+list(set(arr)))
 ```

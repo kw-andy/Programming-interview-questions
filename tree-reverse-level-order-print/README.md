@@ -4,7 +4,7 @@ _source [Programming Interview Questions 21: Tree Reverse Level Order Print](htt
 
 This is very similar to the previous post level order print. We again print the tree in level order, but now starting from bottom level to the root. Using the same tree as before:
 
-!(binaryTree_2_kucuk.png)
+![](binaryTree_2_kucuk.png?style=centerme)
 
 The output should be:
 4 5 6
@@ -20,7 +20,7 @@ After constructing these data structures, the nodes we want to print as the firs
 
 Here is the code:
 
-```
+```python
 def reverseLevelOrderPrint(tree):
     if not tree:
         return

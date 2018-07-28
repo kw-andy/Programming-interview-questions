@@ -6,7 +6,7 @@ Once again it’s the college recruiting season of the year and tech companies s
 
 Let’s say the array is of size N. The naive way to solve the problem, for each element checking whether k-element is present in the array, which is O(N^2). This is of course far from optimal and you might not want to mention it during an interview as well. A more efficient solution would be to sort the array and having two pointers to scan the array from the beginning and the end at the same time. If the sum of the values in left and right pointers equals to k, we output the pair. If the sum is less than k then we advance the left pointer, else if the sum is greater than k we decrement the right pointer, until both pointers meet at some part of the array. The complexity of this solution is O(NlogN) due to sorting. Here is the Python code:
 
-```
+```python
 def pairSum1(arr, k):
     if len(arr)<2:
         return
@@ -27,7 +27,7 @@ Most of the array based interview questions can be solved in O(NlogN) once we so
 
 The O(N) algorithm uses the set data structure. We perform a linear pass from the beginning and for each element we check whether k-element is in the set of seen numbers. If it is, then we found a pair of sum k and add it to the output. If not, this element doesn’t belong to a pair yet, and we add it to the set of seen elements. The algorithm is really simple once we figure out using a set. The complexity is O(N) because we do a single linear scan of the array, and for each element we just check whether the corresponding number to form a pair is in the set or add the current element to the set. Insert and find operations of a set are both average O(1), so the algorithm is O(N) in total. Here is the code in full detail:
 
-```
+```python
 def pairSum2(arr, k):
     if len(arr)<2:
         return

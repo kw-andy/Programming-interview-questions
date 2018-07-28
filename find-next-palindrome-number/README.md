@@ -14,7 +14,7 @@ Now let’s analyze the case where the given number has even number of digits. L
 
 Assume the given number is 4512, we mirror the number around its center, resulting in 4554. This is greater than the given number so we’re done. Now let the number be 1234, mirroring results in 1221 which is less than the original number. So we increment the middle two digits, resulting in 1331 which is the result. What if the middle digits become 9 after mirroring and the resulting number is smaller than the original one? Then we again round up the number and solve the problem as if we got the round number in the first place. For example, if the given number is 1997 mirroring would give 1991, which is less. So we round it up to 2000 and solve as if it were the original number. We mirror it, resulting in 2002 and this is the result. The code will make everything clear:
 
-```
+```python
 def nextPalindrome(num):
     length=len(str(num))
     oddDigits=(length%2!=0)

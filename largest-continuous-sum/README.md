@@ -6,7 +6,7 @@ This is one of the most common interview practice questions. Given an array of i
 
 If the array is all positive, then the result is simply the sum of all numbers. The negative numbers in the array slightly complicate things. The algorithm is, we start summing up the numbers and store in a current sum variable. After adding each element, we check whether the current sum is larger than maximum sum encountered so far. If it is, we update the maximum sum. As long as the current sum is positive, we keep adding the numbers. When the current sum becomes negative, we start with a new current sum. Because a negative current sum will only decrease the sum of a future sequence. Note that we don’t reset the current sum to 0 because the array can contain all negative integers. Then the result would be the largest negative number. The code is fairly simple and will make everything clear:
 
-```
+```python
 def largestContinuousSum(arr):
     if len(arr)==0:
         return

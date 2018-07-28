@@ -4,11 +4,11 @@ _source [Programming Interview Questions 2: Matrix Region Sum](http://www.ardend
 
 This is a very elegant question which seems easy at first but requires some hard thinking to solve it efficiently: Given a matrix of integers and coordinates of a rectangular region within the matrix, find the sum of numbers falling inside the rectangle. Our program will be called multiple times with different rectangular regions from the same matrix.
 
-!(matrix.png)
+![](matrix.png)
 
 It seems very easy right? Just write a double for loop and sum up the numbers. Given the integer matrix, top left and bottom right coordinates of the rectangular region, the algorithm would simply be:
 
-```
+```python
 def matrixRegionSum1(matrix, A, D):
     if len(matrix)==0:
         return
@@ -25,15 +25,15 @@ We should precompute and cache some data in order to reduce the complexity to O(
 
 Precomputing and caching the sums of all rectangles results in a constant time algorithm, but it uses a lot of space. Let’s think whether we can reduce the space complexity to a reasonable amount. The main inefficiency was to store the sum of all possible rectangular regions, instead we can store a subset of them and still achieve constant complexity. Let’s calculate the sum of all rectangular regions whose top left corner is always the point ‘O’ in the above figure (top left corner of the matrix) and bottom right corner is any point in the matrix. By doing this we fix the top left coordinate of the precomputed regions and reduce the number of cached sums to O(MN), because only the bottom right corner of the rectangles is free. So the space complexity reduces to O(MN). Now the question is whether we can compute the sum of any rectangular region using only the precomputed sums of regions whose top left coordinate is the point ‘O’. Apparently we can, here is how it works:
 
-!(matrix2.png)
+![](matrix2.png)
 
 Given a random rectangular region ABCD, we can calculate its sum using the sums of 4 precomputed rectangular regions all of which top left corner is the point ‘O’.
 
-!(latex.php.png)
+![](latex.php.png)
 
 Elegant, isn’t it? Here is the code to precompute the sum of all rectangular regions whose top left coordinate is the point ‘O’. It uses dynamic programming to efficiently compute the sums. The complexity is O(MN) which is optimal because we wanted to compute the sum of MN different rectangular regions. So each region sum is computed in O(1) time by using the sum of the previous regions by dynamic programming.
 
-```
+```python
 def precomputeSums(matrix):
     topRow, bottomRow=(0, len(matrix)-1)
     leftCol, rightCol=(0, len(matrix[0])-1)
@@ -56,7 +56,7 @@ def precomputeSums(matrix):
 
 Once we have the precomputed sums, we use the above formula to compute the sum of any rectangular region in O(1).
 
-```
+```python
 def matrixRegionSum2(matrix, A, D, sums):
     if len(matrix)==0:
         return
@@ -82,3 +82,4 @@ def matrixRegionSum2(matrix, A, D, sums):
 ```
 
 I personally like this question a lot because it demonstrates how an easy question can be solved very efficiently using precomputation, dynamic programming, and clever thinking.
+

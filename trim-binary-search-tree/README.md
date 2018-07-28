@@ -4,11 +4,11 @@ _source [Programming Interview Questions 26: Trim Binary Search Tree](http://www
 
 Given the root of a binary search tree and 2 numbers min and max, trim the tree such that all the numbers in the new tree are between min and max (inclusive). The resulting tree should still be a valid binary search tree. So, if we get this tree as input:
 
-!(bst.png)
+![](bst.png)
 
 and we’re given min value as 5 and max value as 13, then the resulting binary search tree should be:
 
-!(bst_trim-300x205.png)
+![](bst_trim-300x205.png)
 
 We should remove all the nodes whose value is not between min and max. We can do this by performing a post-order traversal of the tree. We first process the left children, then right children, and finally the node itself. So we form the new tree bottom up, starting from the leaves towards the root. As a result while processing the node itself, both its left and right subtrees are valid trimmed binary search trees (may be NULL as well).
 
@@ -16,7 +16,7 @@ At each node we’ll return a reference based on its value, which will then be a
 
 Similar situation occurs when node’s value is greater than max, we now return the reference to its left subtree. Because if a node’s value is greater than max, then its right children are definitely greater than max. But its left children may or may not be greater than max. So we discard the right subtree and return the reference to the already valid left subtree. The code is easier to understand:
 
-```
+```python
 def trimBST(tree, minVal, maxVal):
     if not tree:
         return
@@ -31,3 +31,4 @@ def trimBST(tree, minVal, maxVal):
 ```
 
 The complexity of this algorithm is O(N), where N is the number of nodes in the tree. Because we basically perform a post-order traversal of the tree, visiting each and every node one. This is optimal because we should visit every node at least once. This is a very elegant question that demonstrates the effectiveness of recursion in trees.
+

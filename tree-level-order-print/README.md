@@ -4,7 +4,7 @@ _source [Programming Interview Questions 20: Tree Level Order Print](http://www.
 
 Given a binary tree of integers, print it in level order. The output will contain space between the numbers in the same level, and new line between different levels. For example, if the tree is:
 
-!(binaryTree_2_kucuk.png)
+![](binaryTree_2_kucuk.png)
 
 
 The output should be:
@@ -16,7 +16,7 @@ It won’t be practical to solve this problem using recursion, because recursion
 
 To print the new line in correct place we should count the number of nodes at each level. We will have 2 counts, namely current level count and next level count. Current level count indicates how many nodes should be printed at this level before printing a new line. We decrement it every time we pop an element from the queue and print it. Once the current level count reaches zero we print a new line. Next level count contains the number of nodes in the next level, which will become the current level count after printing a new line. We count the number of nodes in the next level by counting the number of children of the nodes in the current level. Understanding the code is easier than its explanation:
 
-```
+```python
 class Node:
     def __init__(self, val=None):
         self.left, self.right, self.val = None, None, val

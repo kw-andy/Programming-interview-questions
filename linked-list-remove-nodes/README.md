@@ -6,7 +6,7 @@ This is a very fundamental question and it’s tricky to implement without any b
 
 There are many corner cases to consider, here are some. The value to remove is 5.
 
-!(linkedlists.png)
+![](linkedlists.png)
 
 Inputs are the head of the linked list and the integer value to remove. The most important corner case occurs when the element to delete is at the head of the linkedlist. So the caller’s head pointer should be updated. Because of this, our function should take the head either as a pointer to pointer or pass by reference (or we can also return the new head pointer back to the caller). Otherwise the changes won’t be seen by the caller. I personally prefer pass by reference since it leads to cleaner code.
 

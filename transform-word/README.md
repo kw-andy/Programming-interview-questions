@@ -8,7 +8,7 @@ This is again one of my favorite interview questions. It demonstrates how we can
 
 We should perform preprocessing on the given dictionary. Let all the words in the dictionary be the nodes of a graph, and there is an undirected edge between two nodes if one word could be converted to another by a single transformation: changing a character, removing a character, or deleting a character. For example there will be an edge between “bat” and “cat” since we can change a character, also between “cat” and “at” by removing a character, and between “bat” and “bart” by adding a character. We can preprocess the whole dictionary and create this huge graph. Assuming that our program will be asked to transform different words to one another many times,  the cost of precomputation will be negligible. Here is the code to create the graph from the dictionary, the graph is a hashtable where the key is a word and the value is the list of valid transformations of that word:
 
-```
+```python
 def constructGraph(dictionary):
     graph=collections.defaultdict(list)
     letters=string.lowercase
@@ -35,7 +35,7 @@ def constructGraph(dictionary):
 
 Now we have the graph where each edge corresponds to a valid transformation between words. So, given two words we can initiate a breadth first search from the start node and once we reach the goal node we will have the shortest chain of transformations between two words (note that either start or goal or both words may not exist in the dictionary at all). Breadth first search gives the shortest path between a start node and a goal node in an unweighted graph, given that the start node is the root of the search. We didn’t perform depth first search because it won’t necessarily give us the shortest path and we may waste a lot of time trying to explore a dead end because the graph contains many nodes. Here is the code, it takes the graph generated above as an input together with start and goal words:
 
-```
+```python
 def transformWord(graph, start, goal):
     paths=collections.deque([ [start] ])
     extended=set()
@@ -64,11 +64,11 @@ The complexity of the algorithm depends on how far apart two words are in the gr
 
 Here is an example, let’s say we have the following words in our dictionary: cat, bat, bet, bed, at, ad, ed. The transformation graph is the following:
 
-!(graph.png)
+![](graph.png)
 
 Let’s say we want to find the shortest transformation between the words cat and bed. Here is the demonstration of how it works:
 
-!(graphDemo.png)
+![](graphDemo.png)
 
 There are two paths. cat->bat->bet->bed is shorter than cat->at->ad->ed->bed. If we delete the node ‘bet’ than the first path becomes invalid and the shortest path is now the second one. If we also delete ‘ad’ then there is no path left.
 

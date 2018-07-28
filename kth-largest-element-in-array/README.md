@@ -8,7 +8,7 @@ The first approach that comes to mind is sorting the array and returning the kth
 
 We can use the [Selection Algorithm](http://en.wikipedia.org/wiki/Selection_algorithm) as used in quicksort. It works as follows, select a pivot and partition the array to left and right subarrays such that, the elements that are smaller than the pivot value end up in the left group, and the ones that are and larger than or equal to the pivot are in the right group. Now, only the pivot is in its sorted position. The remaining elements are not sorted but their relative position to the pivot, whether they are on the left or right, is as in sorted order. Let’s say after partitioning the array the position of the pivot in the array is m. If m is equal to k, then the pivot is exactly the kth element that we’re looking for, so we return the pivot value. If m is less than k, then the kth element is in the right subarray. Else if m is greater than k, then the kth element is in the left subarray. So we can recursively call the same procedure and find the kth element. The code will make everything clear:
 
-```
+```python
 def partition1(arr, left, right, pivotIndex):
     arr[right], arr[pivotIndex]=arr[pivotIndex], arr[right]
     pivot=arr[right]
@@ -44,15 +44,15 @@ The average time complexity of this approach is O(N). But worst case complexity 
 
 Best case:
 
-!(latex1.php.png)
+![](latex1.php.png)
 
 Worst case:
 
-!(latex2.php.png)
+![](latex2.php.png)
 
 There’s a very elegant algorithm that has worst case linear time performance, which is called [Median of Medians Algorithm](http://en.wikipedia.org/wiki/Selection_algorithm#Linear_general_selection_algorithm_-_Median_of_Medians_algorithm). It’s discovered by 5 great computer scientists, Manuel Blum (Blum speedup theorem), Robert Floyd (Floyd-Warshall shortest path algorithm), Vaughan Pratt (Pratt primality certificate), Ron Rivest (RSA cryptography algorithm), and Robert Tarjan (graph algorithms and data structures). Median of medians is a modified version of selection algorithm where we improve pivot selection to guarantee reasonable good worst case split. The algorithm divides the array to groups of size 5 (the last group can be of any size < 5). Then calculates the median of each group by sorting and selecting the middle element (sorting complexity of 5 elements is negligible). Finds the median of these medians by recursively calling itself, and selects the median of medians as the pivot for partition. Then it continues similar to the previous selection algorithm by recursively calling the left or right subarray depending on the rank of the pivot after partitioning. The partition function is slightly different though, partition1 function above takes the index of the pivot as input, partition2 here takes the value of the pivot as input, which is only a slight modification. Here is the code:
 
-```
+```python
 def partition2(arr, left, right, pivot):
     swapIndex=left
     for i in range(left, right+1):
@@ -81,8 +81,8 @@ def kthLargest2(arr, left, right, k):
 
 The worst case complexity of this approach is O(N) because the median of medians chosen as pivot is either greater than or less than at least 30% of the elements. So even in the worst case we can eliminate constant proportion of the elements at each iteration, which is what we wanted but couldn’t achieve with the previous approach. We can also write the recurrence relation for worst case and verify that it’s linear. N/5 term comes from selecting the median of medians as pivot, and 7N/10 is when the pivot produces the worst split.
 
-!(latex3.php.png)
-!(latex4.php.png)
+![](latex3.php.png)
+![](latex4.php.png)
 
 This is a great algorithm but admittedly kind of hard to come up with during an interview if you haven’t seen it before. At least it took 5 great minds to figure it out. But it’s of course good to know and definitely worth the extra effort.
 

@@ -10,7 +10,7 @@ Standard binary search wouldn’t work because we don’t know the size of the a
 
 If at index 2^m we see an element larger than k, it means the value k (if it exists) must be between indexes 2^(m-1)+1 and 2^m-1 (inclusive), since the array is sorted. The same is true if we get an exception, because we know that the number at index 2^(m-1) is less than k, and we didn’t get an exception accessing that index. Getting an exception at index 2^m means the size of the array is somewhere between 2^(m-1) and 2^m-1. In both cases we break out of the loop and start another modified binary search, this time between indexes 2^(m-1)+1 and 2^m-1. If we previously got exception at index 2^m, we may get more exceptions during this binary search so we should handle this case by assigning the new high index to that location. The code will clarify everything:
 
-```
+```python
 def getIndex(arr, num):
     #check array indexes 0, 2^0, 2^1, 2^2, ...
     index, exp = 0, 0

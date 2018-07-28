@@ -4,12 +4,14 @@ _source [Programming Interview Questions 4: Find Missing Element](http://www.ard
 
 This question can be solved efficiently with a very clever trick. There is an array of non-negative integers. A second array is formed by shuffling the elements of the first array and deleting a random element. Given these two arrays, find which element is missing in the second array. Here is an example input, the first array is shuffled and the number 5 is removed to construct the second array.
 
-> ``` first_array = [4, 1, 0, 2, 9, 6, 8, 7, 5, 3]
-> second_array = [6, 4, 7, 2, 1, 0, 8, 3, 9]```
+```python
+first_array = [4, 1, 0, 2, 9, 6, 8, 7, 5, 3]
+second_array = [6, 4, 7, 2, 1, 0, 8, 3, 9]
+```
 
 The naive way to solve it is for every element in the second array, check whether it appears in the first array. Note that there may be duplicate elements in the arrays so we should pay special attention to it. The complexity of this approach is O(N^2). A more efficient solution is to sort the first array, so while checking whether an element in the first array appears in the second, we can do binary search. But we should still be careful about duplicate elements. The complexity is O(NlogN). If we don’t want to deal with the special case of duplicate numbers, we can sort both arrays and iterate over them simultaneously. Once two iterators have different values we can stop. The value of the first iterator is the missing element. This solution is also O(NlogN). Here is the algorithm for this approach:
 
-```
+```python
 def findMissingNumber1(array1, array2):
     array1.sort()
     array2.sort()

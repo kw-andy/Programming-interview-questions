@@ -6,7 +6,7 @@ We are given 3 strings: str1, str2, and str3. Str3 is said to be a shuffle of st
 
 We will use recursion to solve the problem, but first we check whether the length of str1 plus str2 equals to the length of str3. If not, then str3 can’t be a valid shuffle since it contains extra characters, so we return false immediately. Recursion happens as follows. If the first characters of str1 and str3 are the same, then we’ll recurse with new str1 and str3 being all but first characters of the strings, and str2 will stay the same. If first characters of str2 and str3 are the same, then we’ll do the same thing with new str2 and str3 being all but first characters, and str1 the same. Now this is the same problem with shorter strings, so it’s very suitable for recursion. If neither str1’s nor str2’s first character equals str3’s first character, we return false. The base case of the recursion is, if any of the strings is empty then the concatenation of str1 and str2 should be equal to str3. Here is the python code:
 
-```
+```python
 def isShuffle(str1, str2, str3):
     if len(str1)+len(str2)!=len(str3):
         return False
@@ -30,11 +30,11 @@ def isShuffle(str1, str2, str3):
 
 The algorithm effectively uses recursion to solve a smaller instance of the same problem. However, the complexity is exponential. Since we don’t cache the evaluated results, we may try to evaluate the same input strings again and again. It becomes clear when we draw the recursion tree. We can also look at the recurrence relation and verify.
 
-!(latex.php.png)
+![](latex.php.png)
 
 n is the number of characters in str3. There are two terms in the relation, one for each recursion described above. The recurrence relation is similar to Fibonacci numbers, and it’s exponential. So, we need to perform dynamic programming and cache the already evaluated results to avoid precomputation. Once we see that two input strings don’t produce a valid shuffle, we cache this information (if they do produce a valid shuffle then we’re done and return True, so no need to cache). In the beginning of the function we will check whether we evaluated the given input strings before trying to compute again.  If we did, then we won’t try again and immediately return False. Here is the code with caching:
 
-```
+```python
 def isShuffle2(str1, str2, str3, cache=set()):
     if (str1, str2) in cache:
         return False

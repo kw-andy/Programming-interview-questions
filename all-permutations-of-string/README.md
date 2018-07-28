@@ -6,7 +6,7 @@ The title says it all, this is a pretty standard interview question. Generate al
 
 This may seem hard at first but it’s in fact pretty easy once we figure out the logic. Let’s say we’re given a string of length N, and we somehow generated some permutations of length N-1. How do we generate all permutations of length N? Demonstrating with a small example will help. Let the string be ‘LSE’, and we have length 2 permutations ‘SE’ and ‘ES’. How do we incorporate the letter L into these permutations? We just insert it into every possible location in both strings: beginning, middle, and the end. So for ‘SE’ the result is: ‘LSE’, ‘SLE’, ‘SEL’. And for the string ‘ES’ the results is: ‘LES’, ‘ELS’, ‘ESL’. We inserted the character L to every possible location in all the strings. This is it!. We will just use a recursive algorithm and we’re done. Recurse until the string is of length 1 by repeatedly removing the first character, this is the base case and the result is the string itself (the permutation of a string with length 1 is itself). Then apply the above algorithm, at each step insert the character you removed to every possible location in the recursion results and return. Here is the code:
 
-```
+```python
 def permutations(word):
     if len(word)&lt;=1:
         return [word]

@@ -8,7 +8,7 @@ We need a data structure to keep track of the characters we have seen so far, wh
 
 Set data structure perfectly suits our purpose. It stores keys and provides constant time search for key existence. So, we’ll loop over the characters of the string, and at each iteration we’ll check whether we have seen the current character before by searching the set. If it’s in the set then it means we’ve seen it before, so we ignore it. Otherwise, we include it in the result and add it to the set to keep track for future reference. The code is easier to understand:
 
-```
+```python
 def removeDuplicates(string):
     result=[]
     seen=set()

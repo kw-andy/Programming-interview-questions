@@ -10,7 +10,7 @@ But we can do much better by using the XOR trick described in that post. It’s 
 
 Let’s say we’re given the following array: [1, 2, 3, 1, 2, 3, 1]. If  we XOR all the elements in this array the result is 1^2^3^1^2^3^1 = 1. Because the numbers 2 and 3 will be XORed with themselves 1 time, producing 0. And the number 1 will be XORed with itself 2 times, resulting in its own value. So, the overall result of the XOR operations is the number 1, odd occurring element in the array. Here’s the code:
 
-```
+```python
 def getOdd(arr):
     return reduce(lambda x, y: x^y, arr)
 ```
